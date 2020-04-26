@@ -6,103 +6,95 @@
  */
 
 module.exports = {
-
   attributes: {
-
     id: {
-      type: 'integer',
+      type: "integer",
       primaryKey: true,
       required: true,
       autoIncrement: true,
-      columnName: 'id'
+      columnName: "id",
     },
     name: {
-      type: 'string',
+      type: "string",
       allowNull: false,
-      columnName: 'name'
+      columnName: "name",
     },
     email: {
-      type: 'string',
+      type: "string",
       allowNull: false,
-      columnName: 'email'
+      columnName: "email",
     },
     phone_no: {
-      type: 'integer',
+      type: "integer",
       allowNull: false,
-      columnName: 'phone_no'
+      columnName: "phone_no",
     },
     role_id: {
-      type: 'integer',
+      type: "integer",
       allowNull: false,
-      columnName: 'role_id'
+      columnName: "role_id",
     },
     date_of_joining: {
-      type: 'date',
+      type: "date",
       allowNull: false,
-      columnName: 'date_of_joining'
+      columnName: "date_of_joining",
     },
     date_of_birth: {
-      type: 'date',
+      type: "date",
       allowNull: false,
-      columnName: 'date_of_birth'
+      columnName: "date_of_birth",
     },
-    image_path:{
-      type: 'string',
+    image_path: {
+      type: "string",
       allowNull: false,
-      columnName: 'image_path'
-
+      columnName: "image_path",
     },
     address: {
-      type: 'string',
+      type: "string",
       allowNull: false,
-      columnName: 'address'
+      columnName: "address",
     },
     password: {
-      type: 'string',
+      type: "string",
       allowNull: false,
-      columnName: 'password',
-
-
+      columnName: "password",
     },
     degination: {
-      type: 'string',
+      type: "string",
       allowNull: false,
-      columnName: 'degination'
+      columnName: "degination",
     },
     google_provider_id: {
-      type: 'string',
+      type: "string",
       allowNull: false,
-      columnName: 'google_provider_id'
+      columnName: "google_provider_id",
     },
     facebook_provide_id: {
-      type: 'string',
+      type: "string",
       allowNull: false,
-      columnName: 'facebook_provide_id'
+      columnName: "facebook_provide_id",
     },
     status: {
-      type:'integer',
+      type: "integer",
       allowNull: false,
-      columnName: 'status'
+      columnName: "status",
     },
     created_at: {
-      type: 'datetime',
+      type: "datetime",
       allowNull: false,
-      columnName: 'created_at'
+      columnName: "created_at",
     },
     updated_at: {
-      type: 'datetime',
+      type: "datetime",
       allowNull: false,
-      columnName: 'updated_at'
+      columnName: "updated_at",
     },
     is_deleted: {
-      type: 'boolean',
+      type: "boolean",
       allowNull: false,
-      columnName: 'is_deleted'
-    }
-
-
+      columnName: "is_deleted",
+    },
   },
 
-  connection:'postgres'
+  connection: "postgres",
 };
-

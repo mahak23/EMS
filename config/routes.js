@@ -34,11 +34,11 @@ module.exports.routes = {
   "/": {
     view: "homepage",
   },
-
+  "get /user/:id": "UserController.show",
   "get /user": "UserController.list",
   "delete /user/:id": "UserController.delete",
   "post /user": "UserController.add",
-  "get /user/:id": "UserController.edit",
+  "put /user/:id": "UserController.edit",
 
   /***************************************************************************
    *                                                                          *

@@ -4,95 +4,91 @@
  * @description :: TODO: You might write a short summary of how this model works and what it represents here.
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
+let bcrypt = require("bcrypt");
 
 module.exports = {
+  // Lifecycle Callbacks
+  beforeCreate: function (values, cb) {
+    // Hash password
+    bcrypt.hash(values.password, 10, function (err, hash) {
+      if (err) return cb(err);
+      values.password = hash;
+      //calling cb() with an argument returns an error. Useful for canceling the entire operation if some criteria fails.
+      cb();
+    });
+  },
   attributes: {
     id: {
       type: "integer",
       primaryKey: true,
-      required: true,
       autoIncrement: true,
-      columnName: "id",
     },
     name: {
       type: "string",
       allowNull: false,
-      columnName: "name",
+      size: 50,
     },
     email: {
       type: "string",
       allowNull: false,
-      columnName: "email",
+      size: 100,
     },
-    phone_no: {
-      type: "integer",
-      allowNull: false,
-      columnName: "phone_no",
-    },
-    role_id: {
-      type: "integer",
-      allowNull: false,
-      columnName: "role_id",
-    },
-    date_of_joining: {
-      type: "date",
-      allowNull: false,
-      columnName: "date_of_joining",
-    },
-    date_of_birth: {
-      type: "date",
-      allowNull: false,
-      columnName: "date_of_birth",
-    },
-    image_path: {
+    phoneNo: {
       type: "string",
       allowNull: false,
-      columnName: "image_path",
+      size: 50,
+    },
+    roleId: {
+      type: "integer",
+      allowNull: false,
+    },
+    dateOfJoining: {
+      type: "date",
+      allowNull: false,
+    },
+    dateOfBirth: {
+      type: "date",
+      allowNull: false,
+    },
+    imagePath: {
+      type: "string",
+      allowNull: false,
+      size: 100,
     },
     address: {
       type: "string",
       allowNull: false,
-      columnName: "address",
+      size: 200,
     },
     password: {
       type: "string",
       allowNull: false,
-      columnName: "password",
+      size: 50,
     },
     degination: {
       type: "string",
       allowNull: false,
-      columnName: "degination",
     },
-    google_provider_id: {
+    manager_id: {
+      type: "integer",
+      allowNull: true,
+      defaultsTo: null,
+    },
+    googleProviderId: {
       type: "string",
       allowNull: false,
-      columnName: "google_provider_id",
     },
-    facebook_provide_id: {
+    facebookProvideId: {
       type: "string",
       allowNull: false,
-      columnName: "facebook_provide_id",
     },
     status: {
       type: "integer",
       allowNull: false,
-      columnName: "status",
     },
-    created_at: {
-      type: "datetime",
-      allowNull: false,
-      columnName: "created_at",
-    },
-    updated_at: {
-      type: "datetime",
-      allowNull: false,
-      columnName: "updated_at",
-    },
-    is_deleted: {
+    isDeleted: {
       type: "boolean",
       allowNull: false,
-      columnName: "is_deleted",
     },
   },
 

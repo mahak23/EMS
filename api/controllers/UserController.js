@@ -7,120 +7,85 @@
 
 module.exports = {
   //for record listing
-  list: function (req, res) {
+  list: (req, res) => {
     User.find({}).exec((err, users) => {
       if (err) {
-        res.send(500, { error: "database error" });
+        return res.status(500).json({ error: "Something went wrong!" });
       }
-      return res.send({ users: users });
+      return res.status(200).json({ users: users });
+    });
+  },
+
+  show: (req, res) => {
+    User.findOne({ id: req.params.id }).exec((err, user) => {
+      if (err) {
+        return res.status(500).json({ error: "Something went wrong!" });
+      }
+      return res.status(200).json({ user: user });
     });
   },
 
   //for insert record
-  add: function (req, res) {
-    let name = req.body.name;
-    let email = req.body.email;
-    let phone_no = req.body.phone_no;
-    let role_id = req.body.role_id;
-    let date_of_joining = req.body.date_of_joining;
-    let date_of_birth = req.body.date_of_birth;
-    let image_path = req.body.image_path;
-    let address = req.body.address;
-    let password = req.body.password;
-    let degination = req.body.degination;
-    let google_provider_id = req.body.google_provider_id;
-    let facebook_provide_id = req.body.facebook_provide_id;
-    let status = req.body.status;
-    let created_at = req.body.created_at;
-    let updated_at = req.body.updated_at;
-    let is_deleted = req.body.is_deleted;
-
+  add: (req, res) => {
     User.create({
-      name: name,
-      email: email,
-      phone_no: phone_no,
-      role_id: role_id,
-      date_of_joining: date_of_joining,
-      date_of_birth: date_of_birth,
-      image_path: image_path,
-      address: address,
-      password: password,
-      degination: degination,
-      google_provider_id: google_provider_id,
-      facebook_provide_id: facebook_provide_id,
-      status: status,
-      created_at: created_at,
-      updated_at: updated_at,
-      is_deleted: is_deleted,
+      name: req.body.name,
+      email: req.body.email,
+      phoneNo: req.body.phoneNo,
+      roleId: req.body.roleId,
+      dateOfJoining: req.body.dateOfJoining,
+      dateOfBirth: req.body.dateOfBirth,
+      imagePath: req.body.imagePath,
+      address: req.body.address,
+      password: req.body.password,
+      degination: req.body.degination,
     }).exec((err) => {
       if (err) {
-        res.send(500, { error: "database error" });
+        return res.status(500).json({ error: "Something went wrong!" });
       } else {
-        return res.send("Record added successfully");
+        return res.status(200).json({ msg: "Manager added successfully" });
       }
     });
   },
 
   //for delete record
-  delete: function (req, res) {
-    User.delete({ id: req.params.id }).exec((err) => {
+  delete: (req, res) => {
+    User.destroy({ id: req.params.id }).exec((err) => {
       if (err) {
-        res.send(500, { error: "database error" });
+        return res.status(500).json({ error: "Something went wrong!" });
       } else {
-        return res.send("Record deleted successfully");
+        return res.status(200).json({ msg: "Record deleted successfully" });
       }
     });
   },
 
   //for update record
-  edit: function (req, res) {
+  edit: (req, res) => {
     User.findOne({ id: req.params.id }).exec((err, user) => {
       if (err) {
-        res.send(500, { error: "database error" });
+        return res.status(500).json({ error: "Something went wrong!" });
       }
     });
-    let name = req.body.name;
-    let email = req.body.email;
-    let phone_no = req.body.phone_no;
-    let role_id = req.body.role_id;
-    let date_of_joining = req.body.date_of_joining;
-    let date_of_birth = req.body.date_of_birth;
-    let image_path = req.body.image_path;
-    let address = req.body.address;
-    let password = req.body.password;
-    let degination = req.body.degination;
-    let google_provider_id = req.body.google_provider_id;
-    let facebook_provide_id = req.body.facebook_provide_id;
-    let status = req.body.status;
-    let created_at = req.body.created_at;
-    let updated_at = req.body.updated_at;
-    let is_deleted = req.body.is_deleted;
-
+    console.log(req.body);
     User.update(
       { id: req.params.id },
       {
-        name: name,
-        email: email,
-        phone_no: phone_no,
-        role_id: role_id,
-        date_of_joining: date_of_joining,
-        date_of_birth: date_of_birth,
-        image_path: image_path,
-        address: address,
-        password: password,
-        degination: degination,
-        google_provider_id: google_provider_id,
-        facebook_provide_id: facebook_provide_id,
-        status: status,
-        created_at: created_at,
-        updated_at: updated_at,
-        is_deleted: is_deleted,
+        name: req.body.name,
+        email: req.body.email,
+        phoneNo: req.body.phoneNo,
+        roleId: req.body.roleId,
+        dateOfJoining: req.body.dateOfJoining,
+        dateOfBirth: req.body.dateOfBirth,
+        imagePath: req.body.imagePath,
+        address: req.body.address,
+        password: req.body.password,
+        degination: req.body.degination,
       }
     ).exec((err) => {
+      console.log(err);
       if (err) {
-        res.send(500, { error: "database error" });
+        return res.status(500).json({ error: "Something went wrong!" });
       } else {
-        return res.send("Record updated successfully");
+        return res.status(200).json({ msg: "Record updated successfully" });
       }
     });
   },

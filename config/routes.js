@@ -34,6 +34,7 @@ module.exports.routes = {
   "/": {
     view: "homepage",
   },
+  "post /signup": "AuthController.create",
   "get /user/:id": "UserController.show",
   "get /user": "UserController.list",
   "delete /user/:id": "UserController.delete",

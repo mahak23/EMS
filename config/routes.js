@@ -31,15 +31,21 @@ module.exports.routes = {
    *                                                                          *
    ***************************************************************************/
 
-  "/": {
-    view: "homepage",
-  },
-  "post /signup": "AuthController.create",
-  "get /user/:id": "UserController.show",
-  "get /user": "UserController.list",
-  "delete /user/:id": "UserController.delete",
-  "post /user": "UserController.add",
-  "put /user/:id": "UserController.edit",
+  "post /login": "AuthController.login",
+
+  // Manager routes
+  "get /manager/:id": "ManagerController.show",
+  "get /manager": "ManagerController.list",
+  "delete /manager/:id": "ManagerController.delete",
+  "post /manager": "ManagerController.add",
+  "put /manager/:id": "ManagerController.edit",
+
+  //Employee routes
+  "get /employee/:id": "EmployeeController.show",
+  "get /employee": "EmployeeController.list",
+  "delete /employee/:id": "EmployeeController.delete",
+  "post /employee": "EmployeeController.add",
+  //"put /employee/:id": "EmployeeController.edit",
 
   /***************************************************************************
    *                                                                          *

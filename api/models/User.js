@@ -52,7 +52,7 @@ module.exports = {
     },
     imagePath: {
       type: "string",
-      allowNull: false,
+      allowNull: true,
       size: 100,
     },
     address: {
@@ -69,26 +69,27 @@ module.exports = {
       type: "string",
       allowNull: false,
     },
-    manager_id: {
+    managerId: {
       type: "integer",
       allowNull: true,
-      defaultsTo: null,
     },
     googleProviderId: {
       type: "string",
-      allowNull: false,
+      defaultsTo: null,
+      allowNull: true,
     },
     facebookProvideId: {
       type: "string",
-      allowNull: false,
+      defaultsTo: null,
+      allowNull: true,
     },
     status: {
       type: "integer",
-      allowNull: false,
+      defaultsTo: 1,
     },
     isDeleted: {
-      type: "boolean",
-      allowNull: false,
+      type: "integer",
+      defaultsTo: 0,
     },
   },
 

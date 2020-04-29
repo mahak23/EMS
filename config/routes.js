@@ -45,7 +45,7 @@ module.exports.routes = {
   "get /employee": "EmployeeController.list",
   "delete /employee/:id": "EmployeeController.delete",
   "post /employee": "EmployeeController.add",
-  //"put /employee/:id": "EmployeeController.edit",
+  "put /employee/:id": "EmployeeController.edit",
 
   /***************************************************************************
    *                                                                          *

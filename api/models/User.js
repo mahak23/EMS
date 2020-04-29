@@ -25,63 +25,56 @@ module.exports = {
     },
     name: {
       type: "string",
-      allowNull: false,
+
       size: 50,
     },
     email: {
       type: "string",
-      allowNull: false,
+
       size: 100,
     },
     phoneNo: {
       type: "string",
-      allowNull: false,
+
       size: 50,
     },
     roleId: {
       type: "integer",
-      allowNull: false,
     },
     dateOfJoining: {
       type: "date",
-      allowNull: false,
     },
     dateOfBirth: {
       type: "date",
-      allowNull: false,
     },
     imagePath: {
       type: "string",
-      allowNull: true,
+
       size: 100,
     },
     address: {
       type: "string",
-      allowNull: false,
+
       size: 200,
     },
     password: {
       type: "string",
-      allowNull: false,
+
       size: 50,
     },
     degination: {
       type: "string",
-      allowNull: false,
     },
     managerId: {
       type: "integer",
-      allowNull: true,
+
+      defaultsTo: null,
     },
     googleProviderId: {
       type: "string",
-      defaultsTo: null,
-      allowNull: true,
     },
     facebookProvideId: {
       type: "string",
-      defaultsTo: null,
-      allowNull: true,
     },
     status: {
       type: "integer",

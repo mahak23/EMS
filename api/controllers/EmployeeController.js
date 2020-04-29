@@ -51,7 +51,7 @@ module.exports = {
       req
         .file("imagePath")
         .upload({ dirname: imageDir }, async (err, files) => {
-          let fileName = files.filename;
+          let fileName = files[0].filename;
           if (err) {
             throw err;
           }
@@ -113,7 +113,10 @@ module.exports = {
       req
         .file("imagePath")
         .upload({ dirname: imageDir }, async (err, files) => {
-          let fileName = files.filename;
+          let fileName = files[0].filename;
+          console.log(files);
+          console.log(files[0].fd);
+          console.log(path.basename(files[0].fd));
           if (err) {
             throw err;
           }
@@ -125,8 +128,10 @@ module.exports = {
           data.managerId = req.user.id;
           data.imagePath = fileName;
           await User.update({ id: req.params.id }, data);
+          return res
+            .status(200)
+            .json({ msg: "Employee updated successfully!" });
         });
-      return res.status(200).json({ msg: "Employee updated successfully!" });
     } catch (err) {
       return res.badRequest(err);
     }

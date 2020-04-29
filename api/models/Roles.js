@@ -6,38 +6,22 @@
  */
 
 module.exports = {
-
   attributes: {
     id: {
-      type: 'integer',
+      type: "integer",
       primaryKey: true,
       required: true,
       autoIncrement: true,
-      columnName: 'id'
+      columnName: "id",
     },
     title: {
-      type: 'string',
-      allowNull: false,
-      columnName: 'title'
+      type: "string",
+      size: 10,
     },
-    created_at: {
-      type: 'datetime',
-      allowNull: false,
-      columnName: 'created_at'
-    },
-    updated_at: {
-      type: 'datetime',
-      allowNull: false,
-      columnName: 'updated_at'
-    },
+
     is_deleted: {
-      type: 'boolean',
-      allowNull: false,
-      columnName: 'is_deleted'
-    }
-
-
+      type: "integer",
+    },
   },
-  connection:'postgres'
+  connection: "postgres",
 };
-

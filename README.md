@@ -13,3 +13,5 @@ postgres version -11.
    npm install
 3. run command to run application.
    sails lift
+4. Admin credentials for login placed in config/bootsrap.js 
+   

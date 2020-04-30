@@ -1,17 +1,18 @@
 /**
- * UserController
+ * EmployeeController
  *
  * @description :: Server-side logic for managing users
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 const path = require("path");
-let fs = require("fs");
+const fs = require("fs");
+
 module.exports = {
   //for record listing
   list: async (req, res) => {
     try {
       let users = await User.find({ roleId: 3, isDeleted: 0 });
-      return res.status(200).json({ users: users });
+      return res.ok({ users: users });
     } catch (err) {
       return res.badRequest(err);
     }
@@ -25,7 +26,7 @@ module.exports = {
         isDeleted: 0,
       });
       if (user) {
-        return res.status(200).json({ user: user });
+        return ok({ user: user });
       }
       return res.badRequest(new Error("Employee does not exist"));
     } catch (err) {
@@ -51,8 +52,10 @@ module.exports = {
         dateOfBirth: req.body.dateOfBirth,
         address: req.body.address,
         password: req.body.password,
-        degination: req.body.degination,
+        designation: req.body.designation,
       };
+
+      console.log(req.body);
       let imageDir = path.resolve(sails.config.appPath, "assets/images");
 
       req
@@ -66,9 +69,10 @@ module.exports = {
           data.roleId = 3;
           data.managerId = req.user.id;
           data.imagePath = fileName;
+          console.log(data);
           await User.create(data);
 
-          return res.status(200).json({ msg: "Employee added successfully" });
+          return res.ok({ msg: "Employee added successfully" });
         });
     } catch (err) {
       return res.badRequest(err);
@@ -89,7 +93,7 @@ module.exports = {
       }
       await User.destroy({ id: req.params.id });
 
-      return res.status(200).json({ msg: "Employee deleted successfully" });
+      return res.ok({ msg: "Employee deleted successfully" });
     } catch (err) {
       return res.badRequest(err);
     }
@@ -123,17 +127,16 @@ module.exports = {
         dateOfJoining: req.body.dateOfJoining,
         dateOfBirth: req.body.dateOfBirth,
         address: req.body.address,
-        degination: req.body.degination,
+        designation: req.body.designation,
       };
+      console.log(req.body);
       let imageDir = path.resolve(sails.config.appPath, "assets/images");
 
       req
         .file("imagePath")
         .upload({ dirname: imageDir }, async (err, files) => {
           let fileName = files[0].filename;
-          console.log(files);
-          console.log(files[0].fd);
-          console.log(path.basename(files[0].fd));
+
           if (err) {
             throw err;
           }
@@ -141,13 +144,11 @@ module.exports = {
           if (fs.existsSync(oldFile)) {
             fs.unlinkSync(oldFile);
           }
-
+          console.log(data);
           data.managerId = req.user.id;
           data.imagePath = fileName;
           await User.update({ id: req.params.id }, data);
-          return res
-            .status(200)
-            .json({ msg: "Employee updated successfully!" });
+          return res.ok({ msg: "Employee updated successfully!" });
         });
     } catch (err) {
       return res.badRequest(err);

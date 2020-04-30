@@ -1,3 +1,13 @@
+/**
+ * isAuthorized
+ *
+ * @module      :: Policy
+ * @description :: Simple policy to allow any authenticated user
+ *                 Assumes that your login action in one of your controllers sets `req.session.authenticated = true;`
+ * @docs        :: http://sailsjs.org/#!/documentation/concepts/Policies
+ *
+ */
+
 module.exports = async (req, res, next) => {
   let token;
   //Check if authorization header is present
@@ -24,10 +34,10 @@ module.exports = async (req, res, next) => {
     if (!user) {
       throw new Error("invalid token");
     }
-    console.log("in auth policy");
+
     req.user = user;
 
-    next();
+    return next();
   } catch (err) {
     return res.json(401, { error: "Invalid token" });
   }

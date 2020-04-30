@@ -17,12 +17,11 @@
  */
 
 module.exports.policies = {
-  //"*": ["isAuthorized"], // Everything resctricted here,
-  // ManagerController: { "*": ["isAuthorized", "isAdmin"] },
-  //EmployeeController: { "*": ["isAuthorized", "isManager"] },
-  // AuthController: {
-  //   "*": true, // We dont need authorization here, allowing public access
-  // },
+  ManagerController: { "*": ["isAuthorized", "isAdmin"] },
+  EmployeeController: { "*": ["isAuthorized", "isManager"] },
+  AuthController: {
+    "*": true, // We dont need authorization here, allowing public access
+  },
   /***************************************************************************
    *                                                                          *
    * Default policy for all controllers and actions (`true` allows public     *

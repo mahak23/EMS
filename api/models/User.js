@@ -25,56 +25,69 @@ module.exports = {
     },
     name: {
       type: "string",
-
       size: 50,
+      minLength: 3,
+      maxLength: 10,
+      required: true,
     },
     email: {
       type: "string",
-
       size: 100,
+      email: true,
+      required: true,
     },
     phoneNo: {
       type: "string",
-
       size: 50,
+      maxLength: 10,
+      required: true,
     },
     roleId: {
       type: "integer",
     },
     dateOfJoining: {
-      type: "date",
+      type: "string",
+      required: true,
     },
     dateOfBirth: {
-      type: "date",
+      type: "string",
+      required: true,
     },
     imagePath: {
       type: "string",
 
-      size: 100,
+      size: 150,
     },
     address: {
       type: "string",
-
-      size: 200,
+      required: true,
+      minLength: 2,
+      maxLength: 1000,
+      size: 2000,
     },
     password: {
       type: "string",
-
-      size: 50,
+      required: true,
+      minLength: 5,
+      size: 120,
     },
-    degination: {
+    designation: {
       type: "string",
+      required: true,
+      minLength: 2,
+
+      maxLength: 50,
     },
     managerId: {
       type: "integer",
-
-      defaultsTo: null,
     },
     googleProviderId: {
       type: "string",
+      defaultsTo: null,
     },
     facebookProvideId: {
       type: "string",
+      defaultsTo: null,
     },
     status: {
       type: "integer",

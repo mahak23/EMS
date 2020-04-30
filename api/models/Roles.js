@@ -10,17 +10,15 @@ module.exports = {
     id: {
       type: "integer",
       primaryKey: true,
-      required: true,
       autoIncrement: true,
-      columnName: "id",
     },
     title: {
       type: "string",
-      size: 10,
+      size: 30,
     },
-
-    is_deleted: {
+    isDeleted: {
       type: "integer",
+      defaultsTo: 0,
     },
   },
   connection: "postgres",

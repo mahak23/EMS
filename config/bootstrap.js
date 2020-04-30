@@ -9,9 +9,30 @@
  * http://sailsjs.org/#!/documentation/reference/sails.config/sails.config.bootstrap.html
  */
 
-module.exports.bootstrap = function(cb) {
-
+module.exports.bootstrap = function (cb) {
   // It's very important to trigger this callback method when you are finished
   // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
+
+  // Insert roles if not any
+  Roles.count().exec(function (err, result) {
+    if (result == 0) {
+      Roles.createEach([
+        { title: "Admin" },
+        { title: "Manager" },
+        { title: "Employee" },
+      ]).exec(function (err, result) {});
+    }
+  });
+
+  User.findOrCreate(
+    { roleId: 1 },
+    {
+      name: "Admin",
+      email: "admin@yopmail.com",
+      password: "admin@123",
+      roleId: 1,
+    }
+  ).exec(function (err, result) {});
+
   cb();
 };

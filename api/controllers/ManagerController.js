@@ -1,5 +1,5 @@
 /**
- * UserController
+ * ManagerController
  *
  * @description :: Server-side logic for managing users
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
@@ -10,7 +10,7 @@ module.exports = {
   list: async (req, res) => {
     try {
       let users = await User.find({ roleId: 2, isDeleted: 0 });
-      return res.status(200).json({ users: users });
+      return res.ok({ users: users });
     } catch (err) {
       return res.badRequest(err);
     }
@@ -24,7 +24,7 @@ module.exports = {
         isDeleted: 0,
       });
       if (user) {
-        return res.status(200).json({ user: user });
+        return res.ok({ user: user });
       }
       return res.badRequest(new Error("Manager does not exist"));
     } catch (err) {
@@ -39,7 +39,7 @@ module.exports = {
         email: req.body.email,
         isDeleted: 0,
       });
-      console.log(user);
+
       if (user) {
         throw new Error("Email already exist");
       }
@@ -52,13 +52,13 @@ module.exports = {
         dateOfBirth: req.body.dateOfBirth,
         address: req.body.address,
         password: req.body.password,
-        degination: req.body.degination,
+        designation: req.body.designation,
       };
       data.roleId = 2;
 
       await User.create(data);
 
-      return res.status(200).json({ msg: "Manager added successfully" });
+      return res.ok({ msg: "Manager added successfully" });
     } catch (err) {
       return res.badRequest(err);
     }
@@ -78,7 +78,7 @@ module.exports = {
       }
       await User.destroy({ id: req.params.id });
 
-      return res.status(200).json({ msg: "Manager deleted successfully" });
+      return res.ok({ msg: "Manager deleted successfully" });
     } catch (err) {
       return res.badRequest(err);
     }
@@ -111,11 +111,11 @@ module.exports = {
         dateOfJoining: req.body.dateOfJoining,
         dateOfBirth: req.body.dateOfBirth,
         address: req.body.address,
-        degination: req.body.degination,
+        designation: req.body.designation,
       };
       await User.update({ id: req.params.id }, data);
 
-      return res.status(200).json({ msg: "Manager updated successfully!" });
+      return res.ok({ msg: "Manager updated successfully!" });
     } catch (err) {
       return res.badRequest(err);
     }

@@ -1,8 +1,18 @@
+/**
+ * isAdmin
+ *
+ * @module      :: Policy
+ * @description :: Simple policy to allow any authenticated user
+ *                 Assumes that your login action in one of your controllers sets `req.session.authenticated = true;`
+ * @docs        :: http://sailsjs.org/#!/documentation/concepts/Policies
+ *
+ */
+
 module.exports = async (req, res, next) => {
-  console.log("in admin policy");
   let user = req.user;
+  console.log(user);
   if (user.roleId == 1) {
-    next();
+    return next();
   }
-  return res.status(403).json({ error: "unauthorized access" });
+  return res.forbidden({ error: "unauthorized access" });
 };

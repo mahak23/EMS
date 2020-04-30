@@ -35,6 +35,15 @@ module.exports = {
   //for insert record
   add: async (req, res) => {
     try {
+      let user = await User.findOne({
+        email: req.body.email,
+        isDeleted: 0,
+      });
+      console.log(user);
+      if (user) {
+        throw new Error("Email already exist");
+      }
+
       let data = {
         name: req.body.name,
         email: req.body.email,
@@ -86,6 +95,15 @@ module.exports = {
       if (!user) {
         throw new Error("Manager does not exist");
       }
+      let userEmail = await User.findOne({
+        email: req.body.email,
+        id: { "!": req.params.id },
+        isDeleted: 0,
+      });
+      if (userEmail) {
+        throw new Error("Email already exist");
+      }
+
       let data = {
         name: req.body.name,
         email: req.body.email,
